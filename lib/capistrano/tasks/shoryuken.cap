@@ -89,9 +89,9 @@ namespace :shoryuken do
         unless pid_process_exists?(pid_file)
           args = ['--daemon']
           args.push "--pidfile '#{pid_file}'"
-          logfile = fetch(:shoryuken_log) and args.push "--logfile '#{logfile}'"
-          config = fetch(:shoryuken_config) and args.push "--config '#{config}'"
-          queues = Array(fetch(:shoryuken_queues)) and queues.each{|queue| args.push "--queue #{queue}" }
+          logfile = fetch(:shoryuken_log) and args.push "-L '#{logfile}'"
+          config = fetch(:shoryuken_config) and args.push "-C '#{config}'"
+          queues = Array(fetch(:shoryuken_queues)) and queues.each{|queue| args.push "-q #{queue}" }
           reqs = Array(fetch(:shoryuken_requires)) and reqs.each{|req| args.push "--require #{req}" }
           options = fetch(:shoryuken_options) and args.push Array(options).join(' ')
 
